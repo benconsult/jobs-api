@@ -1,10 +1,28 @@
 
-const x = 99
+const mongoose = require('mongoose')
 
-function tes10(){
-console.log(x);
-var x = 999
-console.log(x);
-}
+const JobSchema = new mongoose.Schema({
+    company: {
+        type:String,
+        required: [true,'Please provide company name'],
+        maxlength:50
+    },
+    position: {
+        type:String,
+        required: [true, 'Please provide position'],
+        maxlength:100
+    },
+    status:{
+        type:String,
+        enum: ['interview','declined','pending'],
+        default: 'pending',
+    },
+    createdBy:{
+        type:mongoose.Types.ObjectId,
+        ref: 'User',
+        required: [true, 'Please provide user']
+    }
+},{timestamps:true}
+)
 
-tes10()
+module.exports = mongoose.model('Job',JobSchema)
