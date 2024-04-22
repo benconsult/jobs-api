@@ -34,10 +34,10 @@ app.use(xss());
 
 // extra packages
 
-// routes - initial setup 
-// app.get('/', (req, res) => {
-//   res.send('jobs api');
-// });
+// routes - initial setup for Heroku 
+ app.get('/', (req, res) => {
+  res.send('jobs api');
+});
 
 app.use('/api/v1/auth',authRouter)
 app.use('/api/v1/jobs', authenticatedUser, jobsRouter)
